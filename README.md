@@ -7,11 +7,10 @@
 <p align="center">
   <a href="#overview">Overview</a> •
   <a href="#dataset">Dataset</a> •
-  <a href="#analytical-tasks">Analytical Tasks</a> •
+  <a href="#analysis">Analysis</a> •
   <a href="#results">Results</a> •
   <a href="#cassandra-storage-and-validation">Cassandra</a> •
-  <a href="#reproducibility">Reproducibility</a> •
-  <a href="#author">Author</a>
+  <a href="#reproducibility">Reproducibility</a>
 </p>
 
 > **Academic Project — STQD6324 Data Management**
@@ -84,7 +83,7 @@ movielens_analysis_spark_cassandra.json
 
 ---
 
-# Analytical Tasks
+# Analysis
 
 The following analytical tasks were implemented using Apache Spark and results were stored in Apache Cassandra:
 
@@ -100,7 +99,7 @@ The following analytical tasks were implemented using Apache Spark and results w
 
 # Results
 
-## Task 1: Average Rating for Each Movie
+## Average Movie Ratings
 
 The average rating and total number of ratings were calculated for every movie in the dataset.
 
@@ -117,7 +116,7 @@ Movie ratings varied considerably across the dataset. Some movies achieved high 
 
 ---
 
-## Task 2: Top 10 Movies with Highest Average Ratings
+## Top 10 Movies by Average Rating
 
 The ten highest-rated movies were identified based on average rating.
 
