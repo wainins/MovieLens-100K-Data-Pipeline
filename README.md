@@ -15,15 +15,15 @@
 
 > **Academic Project — STQD6324 Data Management**
 
-> A distributed data processing project using Apache Spark and Apache Cassandra to analyse the MovieLens 100K dataset. This project demonstrates a complete data engineering workflow from data ingestion into HDFS, analytical querying with Spark SQL and storage in Cassandra.
+> An academic big data analytics project using Apache Spark and Apache Cassandra to process and analyse the MovieLens 100K dataset. The project covers data ingestion into HDFS, data transformation, analytical querying with Spark SQL and storage in Cassandra.
 
 ---
 
 # Overview
 
-The objective is to build a Python-based data pipeline using Apache Spark and Cassandra to perform analytical queries on the MovieLens 100K dataset.
+This project uses Apache Spark and Apache Cassandra to process and analyse the MovieLens 100K dataset. The workflow starts with loading the raw data into HDFS, followed by data transformation and cleaning using PySpark and Spark SQL. The analytical results are then stored in Cassandra and read back for validation.
 
-The project demonstrates:
+The overall workflow is:
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ F --> G[Write Results to Cassandra]
 G --> H[Read Back from Cassandra]
 
 ```
-### Notebook Structure
+### Workflow Structure
 
 ```yaml
 movielens_analysis_spark_cassandra.json
@@ -57,11 +57,11 @@ movielens_analysis_spark_cassandra.json
 ├── 6. Data cleaning & preprocessing
 │
 ├── 7. Analytical queries using Spark SQL
-│   ├── Task 1
-│   ├── Task 2
-│   ├── Task 3
-│   ├── Task 4
-│   └── Task 5
+│   ├── Average Movie Ratings
+│   ├── Top 10 Movies by Average Rating
+│   ├── Favourite Genres Among Active Users
+│   ├── Users Under 20
+│   └── Scientists Aged 30–40
 │
 └── 8. Write results to Cassandra
 └── 9. Read back from Cassandra for validation
@@ -71,7 +71,7 @@ movielens_analysis_spark_cassandra.json
 
 # Dataset
 
-### Source: [MovieLens 100K Dataset](https://grouplens.org/datasets/movielens/)↗️
+**Dataset:** [MovieLens 100K](https://grouplens.org/datasets/movielens/)↗️
 
 ### Files Used
 
@@ -85,15 +85,15 @@ movielens_analysis_spark_cassandra.json
 
 # Analysis
 
-The following analytical tasks were implemented using Apache Spark and results were stored in Apache Cassandra:
+The following analyses were performed using Apache Spark, with the resulting outputs stored in Apache Cassandra:
 
-| Task No. | Description | Cassandra Table |
+| Analysis | Description | Cassandra Table |
 |----------|-------------|-----------------|
-| 1 | Average rating for each movie | avg_movie_ratings |
-| 2 | Top 10 movies by highest average rating | top10_movies |
-| 3 | Favourite genre of active users (≥ 50 ratings) | user_fav_genre |
-| 4 | Users under 20 years old | users_under20 |
-| 5 | Scientists aged between 30 and 40 | scientists_30_40 |
+| Average Movie Ratings | Average rating for each movie | `avg_movie_ratings` |
+| Top 10 Movies | Movies with the highest average ratings | `top10_movies` |
+| Favourite Genres | Favourite genre of users with at least 50 ratings | `user_fav_genre` |
+| Users Under 20 | Users younger than 20 years old | `users_under20` |
+| Scientists Aged 30–40 | Scientists between 30 and 40 years old | `scientists_30_40` |
 
 ---
 
@@ -101,24 +101,24 @@ The following analytical tasks were implemented using Apache Spark and results w
 
 ## Average Movie Ratings
 
-The average rating and total number of ratings were calculated for every movie in the dataset.
+The average rating and number of ratings were calculated for each movie to examine overall rating patterns.
 
 ### Result Table
 <img width="1820" height="539" alt="Image" src="https://github.com/user-attachments/assets/8dfd6e10-ade5-45e7-8749-0780cc7707c2" />
 
-### Visualisation
+### Visualization
 <img width="1779" height="600" alt="Image" src="https://github.com/user-attachments/assets/48cfb0cb-49e8-4861-914c-4299fe2576aa" />
 
 
 ### Findings
 
-Movie ratings varied considerably across the dataset. Some movies achieved high average ratings despite receiving only a few reviews, highlighting the importance of considering rating counts alongside average scores.
+Average ratings varied across movies, with some movies receiving high average scores despite having only a small number of ratings. This shows why rating counts should be considered alongside average ratings when interpreting movie performance.
 
 ---
 
 ## Top 10 Movies by Average Rating
 
-The ten highest-rated movies were identified based on average rating.
+The top 10 movies were identified based on their average ratings.
 
 ### Result Table
 <img width="1844" height="541" alt="Image" src="https://github.com/user-attachments/assets/7e153477-8654-4684-9bff-b4d77591d153" />
@@ -128,13 +128,13 @@ The ten highest-rated movies were identified based on average rating.
 
 ### Findings
 
-All top-ranked movies achieved a perfect average rating of 5.0. However, most of these movies received only one to three ratings, which does not necessarily indicate true popularity or quality. 
+All top-ranked movies achieved a perfect average rating of 5.0. However, most received only one to three ratings, so the high average scores should be interpreted cautiously and do not necessarily indicate greater popularity or overall quality.
 
 ---
 
-## Task 3: Favourite Genre of Users Who Rated at Least 50 Movies
+## Favourite Genres Among Active Users
 
-Users with at least 50 ratings were identified and their favourite genre was determined based on the genre they rated most frequently.
+Users who rated at least 50 movies were analysed to identify the genres they rated most frequently.
 
 ### Result Table
 <img width="1824" height="467" alt="Image" src="https://github.com/user-attachments/assets/7aaabeb2-635e-41db-b165-1df9691f5482" />
@@ -144,13 +144,13 @@ Users with at least 50 ratings were identified and their favourite genre was det
 
 ### Findings
 
-Drama, Comedy, and Action were the most frequently rated genres among active users. Less common genres such as Documentary, Fantasy, and Film-Noir received significantly fewer ratings. This is likely due to due to lower engagement or fewer available titles in that genre.
+Drama, Comedy and Action were the most frequently rated genres among active users, while Documentary, Fantasy and Film-Noir received fewer ratings. The results show a clear difference in rating frequency across genres within this group of active users.
 
 ---
 
-## Task 4: Users Under 20 Years Old
+## Users Under 20
 
-Users younger than 20 years old were extracted from the dataset.
+Users younger than 20 years old were identified to examine the age distribution within this group.
 
 ### Result Table
 <img width="1824" height="465" alt="Image" src="https://github.com/user-attachments/assets/b51becd1-4ee3-49a5-b298-8e5e8dc2cb3a" />
@@ -161,13 +161,13 @@ Users younger than 20 years old were extracted from the dataset.
 ### Findings
 
 
-Most users under 20 were teenagers between 15 and 19 years old and were primarily classified as students (as expected).
+Most users under 20 were between 15 and 19 years old, with students making up the largest occupational group in this age range.
 
 ---
 
-## Task 5: Scientists Aged Between 30 and 40 Years Old
+## Scientists Aged 30–40
 
-Users whose occupation was scientist and whose age was between 30 and 40 years old were identified.
+Users aged 30–40 whose occupation was classified as scientist were identified.
 
 ### Result Table
 <img width="1819" height="470" alt="Image" src="https://github.com/user-attachments/assets/4cf68e5f-027d-45e1-8923-8f60afe593ec" />>
@@ -177,23 +177,30 @@ Users whose occupation was scientist and whose age was between 30 and 40 years o
 
 ### Findings
 
-Only a small number of users matched the scientist occupation and age criteria. The results also showed a notable gender imbalance, with male users making up the majority of this group.
+Only a small number of users matched the scientist occupation and age criteria. Within this group, male users made up the majority, indicating a noticeable gender imbalance in the filtered results.
 
 ---
 
 # Cassandra Storage and Validation
 
-The analytical results generated by Apache Spark were written to Apache Cassandra for persistent storage.
+The analytical results generated by Apache Spark were stored in Apache Cassandra for persistent storage.
 
 ## Cassandra Tables
 
-| avg_movie_ratings | top10_movies | user_fav_genre | users_under20 | scientists_30_40 |
-|---------|---------|---------|---------|---------|
+### Cassandra Tables
+
+| Table | Purpose |
+|---|---|
+| `avg_movie_ratings` | Average rating and number of ratings for each movie |
+| `top10_movies` | Top 10 movies by average rating |
+| `user_fav_genre` | Favourite genre of users who rated at least 50 movies |
+| `users_under20` | Users younger than 20 years old |
+| `scientists_30_40` | Scientists aged 30–40 years old |
 
 
 ### Cassandra Schema Example
 
-```python
+```sql
 CREATE KEYSPACE IF NOT EXISTS movielens
 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 
@@ -211,11 +218,11 @@ CREATE TABLE IF NOT EXISTS avg_movie_ratings (
 
 ## Validation
 
-After writing the results to Cassandra, the tables were read back into Spark DataFrames to verify successful integration between Apache Spark and Apache Cassandra.
+After storing the analytical results in Cassandra, the tables were read back into Spark DataFrames to validate the integration between Apache Spark and Apache Cassandra.
 
 ### Validation Example
 
-```python
+```sql
 spark.read \
 .format("org.apache.spark.sql.cassandra") \
 .options(table="top10_movies", keyspace="movielens") \
@@ -234,7 +241,7 @@ spark.read \
 
 ## Development Environment
 
-This project was developed and tested using the following environment:
+This project was developed and tested in the following environment:
 
 | Component | Version |
 |------------|------------|
@@ -250,33 +257,39 @@ This project was developed and tested using the following environment:
 
 ## Running the Project
 
+The project was developed in an **HDP Sandbox environment using Apache Zeppelin, Apache Spark and Apache Cassandra**.
+
+<details>
+<summary>Environment Setup</summary>
+
 1. Ensure HDP Sandbox is running.
 2. Open Apache Zeppelin:
-   http://localhost:9995
-3. Apache Cassandra is running:
-  ```bash
-  pgrep -a java | grep cassandra
-```
-4. Spark interpreter in Zeppelin configured with:
+   `http://localhost:9995`
+3. Ensure Apache Cassandra is running:
+
 ```bash
+pgrep -a java | grep cassandra
+```
+
+4. Configure the Spark interpreter in Zeppelin:
+```text
 spark.jars.packages = com.datastax.spark:spark-cassandra-connector_2.11:2.3.0
 spark.cassandra.connection.host = 127.0.0.1
-spark.cassandra.connection.port	= 9042
+spark.cassandra.connection.port = 9042
 ```
 5. Import the notebook file:
-
 ```text
 movielens_analysis_spark_cassandra.json
 ```
 
 6. Execute the notebook paragraphs sequentially from top to bottom.
+</details>
 
 ---
 
 > [!NOTE]
-> 1. All outputs presented in this repository were generated directly from the provided Zeppelin notebook.
-> 2. Zeppelin was selected as the development environment because it provides native integration with Apache Spark which allow Spark jobs to be executed directly within interactive notebook paragraphs.
-> 3. This notebook also supports built-in visualisation of query results which improves interpretability and reduces the need for external plotting tools.
+> - All outputs in this repository were generated directly from the Zeppelin notebook.
+> - Apache Zeppelin was used as the development environment for running Spark jobs and visualizing query results.
 
 ---
 
