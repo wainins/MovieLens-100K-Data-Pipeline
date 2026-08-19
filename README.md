@@ -14,6 +14,8 @@
   <a href="#author">Author</a>
 </p>
 
+> **Academic Project — STQD6324 Data Management**
+
 > A distributed data processing project using Apache Spark and Apache Cassandra to analyse the MovieLens 100K dataset. This project demonstrates a complete data engineering workflow from data ingestion into HDFS, analytical querying with Spark SQL and storage in Cassandra.
 
 ---
