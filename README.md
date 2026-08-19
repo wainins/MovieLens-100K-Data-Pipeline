@@ -289,10 +289,12 @@ movielens_analysis_spark_cassandra.json
 > - All outputs in this repository were generated directly from the Zeppelin notebook.
 > - Apache Zeppelin was used as the development environment for running Spark jobs and visualizing query results.
 
+<br> 
+
 ---
 
 <p align="center">
-  <i>This project was completed as part of the **STQD6324 Data Management** course at Universiti Kebangsaan Malaysia.</i>
+  <i>This project was completed as part of the STQD6324 Data Management course at Universiti Kebangsaan Malaysia.</i>
 </p>
 
 
