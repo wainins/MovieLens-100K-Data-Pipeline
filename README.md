@@ -283,9 +283,9 @@ movielens_analysis_spark_cassandra.json
 
 <br>
 
-## Author
-* **Name:** Wan Ainin Sofiya binti Wan Mustafa
-* **Matric No:** P160638
+## About
+
+This project was completed as part of the **STQD6324 Data Management** course at Universiti Kebangsaan Malaysia.
 
 
 
