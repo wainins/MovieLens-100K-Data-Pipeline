@@ -10,8 +10,7 @@
   <a href="#analysis">Analysis</a> •
   <a href="#results">Results</a> •
   <a href="#cassandra-storage-and-validation">Cassandra</a> •
-  <a href="#reproducibility">Reproducibility</a> •
-  <a href="#about">About</a>
+  <a href="#reproducibility">Reproducibility</a>
 </p>
 
 ---
@@ -290,9 +289,13 @@ movielens_analysis_spark_cassandra.json
 > - All outputs in this repository were generated directly from the Zeppelin notebook.
 > - Apache Zeppelin was used as the development environment for running Spark jobs and visualizing query results.
 
-## About
+---
 
-This project was completed as part of the **STQD6324 Data Management** course at Universiti Kebangsaan Malaysia.
+<p align="center">
+  <i>This project was completed as part of the **STQD6324 Data Management** course at Universiti Kebangsaan Malaysia.</i>
+</p>
+
+
 
 
 
